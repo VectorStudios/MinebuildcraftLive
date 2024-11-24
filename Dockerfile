@@ -1,15 +1,14 @@
-# Use a base image with FFmpeg installed
+# Use a lightweight FFmpeg image
 FROM jrottenberg/ffmpeg:latest
 
-# Set working directory
+# Set the working directory
 WORKDIR /app
 
-# Copy the pre-recorded video and the start-stream.sh script to the container
-COPY video.mp4 /app/
-COPY start-stream.sh /app/
+# Copy the start-stream.sh script into the container
+COPY start-stream.sh /app/start-stream.sh
 
 # Make sure the script is executable
 RUN chmod +x /app/start-stream.sh
 
-# Set the entrypoint to run the script
+# Set the entrypoint to execute the streaming script
 ENTRYPOINT ["/app/start-stream.sh"]
